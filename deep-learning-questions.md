@@ -1,8 +1,29 @@
-What’s your go to image classifier & object detector
-Skip connections and why is it useful
-            - Some model architecture
-        - Max pooling and why is it used
-        - What is relu / leaky relu
-            - Most common issue with relu
-        - How does dropout work in training and inference
-        - L1 vs L2 regularization
+## Q: What’s your go to image classifier & object detector?
+
+## Q: What are skip connections and why is it useful? What are some example model architectures?
+Skip connections were introduced in ResNets to allow an alternate pathway for info/gradients to propagate in a model. It helps to prevent loss of information in deep networks and prevents vanishing and exploding gradients. Skip connections fit a residual mapping, so learn delta between layers.
+
+## Q: What is a vanishing gradient?
+It is the phenomena that occurs in deep neural nets where the gradients reduce to 0, making it difficult to train a model. Certain activation functions attempt to map a large input space to a small output space [0,1] which causes small derivatives and therefore a gradient that vanishes to 0.
+
+## Q: What is max pooling and why is it used?
+It is a downsampling operation that allows a layer to represent a larger effective receptive field (spatial resolution). Essentially, it acts as a dimensionality reduction and give a compressed representation of an input.
+
+## Q: Difference between ReLU and Leaky ReLU. What's the most common issue with ReLU?
+Both are activation functions. In ReLU, negative inputs are squashed to 0 and positive inputs get mapped to the same output. Leaky ReLU is an improved version of ReLU that helps in sparse gradients. The most common issue with ReLU is that it can cause weights to not update and cause gradients to forever be 0 at node i.e. ReLU causes dead nodes (dying ReLU) that never activate.
+
+## Q: How does dropout work in training and inference?
+During training, dropout will drop a certain percentage of nodes (randomly) from activating.
+
+## Q: L1 vs L2 regularization
+Regularizatin helps prevent a model from overfitting to the training set, which causes the network to fail to generalize to new data.
+
+## Q: What are some ways to prevent overfitting?
+- regularization
+- data augmentation
+- dropout
+
+
+## Notes
+- CNNs allow for spatial invariance i.e. an object can be shifted and translated in an image and it will still represent the object. This allows for a model to not attach an object to a certain location in an image. Also allows for fewer parameters and weight sharing.
+- 
