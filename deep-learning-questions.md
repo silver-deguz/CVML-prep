@@ -10,18 +10,21 @@ It is the phenomena that occurs in deep neural nets where the gradients reduce t
 It is a downsampling operation that allows a layer to represent a larger effective receptive field (spatial resolution). Essentially, it acts as a dimensionality reduction and give a compressed representation of an input.
 
 ## Q: Difference between ReLU and Leaky ReLU. What's the most common issue with ReLU?
-Both are activation functions. In ReLU, negative inputs are squashed to 0 and positive inputs get mapped to the same output. Leaky ReLU is an improved version of ReLU that helps in sparse gradients. The most common issue with ReLU is that it can cause weights to not update and cause gradients to forever be 0 at node i.e. ReLU causes dead nodes (dying ReLU) that never activate.
+Both are activation functions. In ReLU, negative inputs are squashed to 0 and positive inputs get mapped to the same output. Leaky ReLU is an improved version of ReLU that helps with sparse gradients. The most common issue with ReLU is the dying ReLU problem wherein that it can cause weights to not update and cause gradients to forever be 0 at a node i.e. dead nodes that never activate.
 
 ## Q: How does dropout work in training and inference?
-During training, dropout will drop a certain percentage of nodes (randomly) from activating.
+During training, dropout will drop a certain percentage of nodes (randomly) from activating and setting it to 0. This prevents nodes from co-adapting too much. In inference, the output is scaled appropiately to account for all nodes being activated.
+- training: H1 = np.maximum(0, np.dot(W1, X) + b1)
+- inference: H1 = np.maximum(0, np.dot(W1, X) + b1) * p
 
 ## Q: L1 vs L2 regularization
-Regularizatin helps prevent a model from overfitting to the training set, which causes the network to fail to generalize to new data.
+Regularization helps prevent a model from overfitting to the training set, which causes the network to fail to generalize to new data.
 
 ## Q: What are some ways to prevent overfitting?
 - regularization
 - data augmentation
 - dropout
+- add noise to inputs
 
 
 ## Notes
