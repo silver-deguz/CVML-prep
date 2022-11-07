@@ -29,6 +29,9 @@ Regularization helps prevent a model from overfitting to the training set, which
 - batch normalization
 
 
+## Q: What's the difference between SGD (stochastic gradient descent) and batch gradient descent?
+SGD updates the weights/parameters for each training example, whereass batch gradient descent updates the weights after a batch of examples. 
+
 ## Notes
 - CNNs allow for spatial invariance i.e. an object can be shifted and translated in an image and it will still represent the object. This allows for a model to not attach an object to a certain location in an image. Also allows for fewer parameters and weight sharing.
 - Bagging vs boosting
