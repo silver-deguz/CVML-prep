@@ -3,7 +3,6 @@ from sklearn.datasets import make_blobs
 from collections import defaultdict
 
 
-
 class KMeans:
     def __init__(self, k, max_iter=100):
         self.k = k

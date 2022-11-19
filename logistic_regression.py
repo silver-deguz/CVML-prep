@@ -30,6 +30,8 @@ class LogisticRegression:
             dw /= N 
             db /= N
 
+            if self.lamb > 0:
+                dw += 2 * self.lamb * self.weights
             self.weights -= self.lr * dw
             self.bias -= self.lr * db 
 
@@ -42,13 +44,16 @@ class LogisticRegression:
         db = np.sum(error)
         return dw, db
 
-    def predict(self, x):
+    def predict(self, X):
         z = np.dot(X, self.weights) + self.bias
         y_pred = self._sigmoid(z)
         return [1 if p > 0.5 else 0 for p in y_pred]
 
     def compute_loss(self, y, y_pred):
-        return cross_entropy(y, y_pred)
+        loss = cross_entropy(y_pred, y)
+        if self.lamb:
+            loss += self.lamb * np.sum(self.weights**2)
+        return loss
 
     def _sigmoid(self, z):
         return 1 / (1 + np.exp(-z))

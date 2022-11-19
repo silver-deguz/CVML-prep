@@ -34,5 +34,7 @@ SGD updates the weights/parameters for each training example, whereass batch gra
 
 ## Notes
 - CNNs allow for spatial invariance i.e. an object can be shifted and translated in an image and it will still represent the object. This allows for a model to not attach an object to a certain location in an image. Also allows for fewer parameters and weight sharing.
-- Bagging vs boosting
-- 
+- precision: number of detections that are actually correct
+    precision = TP / (TP + FP)
+- recall: number of ground truth objects that are actually detected
+    recall = TP / (TP + FN)
