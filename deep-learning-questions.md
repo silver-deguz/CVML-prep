@@ -8,7 +8,7 @@ It is the phenomena that occurs in deep neural nets where the gradients reduce t
 It is a downsampling operation that allows a layer to represent a larger effective receptive field (spatial resolution). Essentially, it acts as a dimensionality reduction and give a compressed representation of an input. It increases the receptive field and allows for some robustness in that the output can be unchanged even if input changes. No (free) parameters learned. 
 
 ## Q: Difference between ReLU and Leaky ReLU. What's the most common issue with ReLU?
-Both are activation functions. In ReLU, negative inputs are squashed to 0 and positive inputs get mapped to the same output. Leaky ReLU is an improved version of ReLU that helps with sparse gradients by having a small output for a negative input. The most common issue with ReLU is the dying ReLU problem wherein that it can cause weights to not update and cause gradients to forever be 0 at a node i.e. dead nodes that never activate.
+Both are activation functions. In ReLU, negative inputs are squashed to 0 and positive inputs get mapped to the same output. Leaky ReLU is an improved version of ReLU that helps with sparse gradients by having a small output for a negative input. The most common issue with ReLU is the dying ReLU problem wherein that it can cause weights to not update and cause gradients to forever be 0 at a node i.e. dead nodes that never activate. An advantage to using ReLU as opposed to other activation functions is that it does not suffer from the vanishing gradient problem and it's easier to calculate the forward and backward pass (i.e. it's gradient is simpler, either 0 or 1). 
 - leaky ReLU: f(x)=max(0.01*x , x)
 
 ## Q: How does dropout work in training and inference?
@@ -31,6 +31,9 @@ Introduces a covariance shift by normalizing the activation (zero-mean, unit-var
 
 ## Q: What's the difference between SGD (stochastic gradient descent) and batch gradient descent?
 SGD updates the weights/parameters for each training example, whereass batch gradient descent updates the weights after a batch of examples. 
+
+## Q: What is the runtime of multiplication of two matrices?
+O(N^3) - the dot product is O(N) and you have to do it for NxN matrices.
 
 ## Notes
 - CNNs allow for spatial invariance i.e. an object can be shifted and translated in an image and it will still represent the object. This allows for a model to not attach an object to a certain location in an image. Also allows for fewer parameters and weight sharing. It processes multidimensional arrays. 
