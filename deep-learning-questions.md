@@ -2,7 +2,7 @@
 Skip connections were introduced in ResNets to allow an alternate pathway for info/gradients to propagate in a model. It helps to prevent loss of information in deep networks and prevents vanishing and exploding gradients. Skip connections fit a residual mapping, so learn delta between layers.
 
 ## Q: What is a vanishing gradient?
-It is the phenomena that occurs in deep neural nets where the gradients reduce to 0, making it difficult to train a model. Certain activation functions attempt to map a large input space to a small output space [0,1] which causes small derivatives and therefore a gradient that vanishes to 0.
+It is the phenomena that occurs in deep neural nets where the gradients reduce to 0, making it difficult to train a model. Certain activation functions  (like the sigmoid function) attempt to map a large input space to a small output space [0,1] which causes small derivatives and therefore a gradient that vanishes to 0. If the gradients flowing back is always 0, then the model weights and biases never change and could result in the model not fully learning or being stalled in its learning.
 
 ## Q: What is max pooling and why is it used?
 It is a downsampling operation that allows a layer to represent a larger effective receptive field (spatial resolution). Essentially, it acts as a dimensionality reduction and give a compressed representation of an input. It increases the receptive field and allows for some robustness in that the output can be unchanged even if input changes. No (free) parameters learned. 
@@ -12,7 +12,7 @@ Both are activation functions. In ReLU, negative inputs are squashed to 0 and po
 - leaky ReLU: f(x)=max(0.01*x , x)
 
 ## Q: How does dropout work in training and inference?
-During training, dropout will drop a certain percentage of nodes (randomly) from activating and setting it to 0. This prevents nodes from co-adapting too much. In inference, the output is scaled appropiately to account for all nodes being activated.
+During training, dropout will drop a certain percentage of nodes (randomly) from activating and setting it to 0. This prevents nodes/features from co-adapting too much. In inference, the output is scaled appropiately to account for all nodes being activated.
 - training: H1 = np.maximum(0, np.dot(W1, X) + b1)
 - inference: H1 = np.maximum(0, np.dot(W1, X) + b1) * p
 
@@ -27,7 +27,7 @@ Regularization helps prevent a model from overfitting to the training set, which
 - batch normalization
 
 ## Q: What is batch normalization? How do you apply it in training and testing?
-Introduces a covariance shift by normalizing the activation (zero-mean, unit-variance) based on current mini batch. It forces inputs to be nicely scaled at each layer which improves gradient flow. Freeze batch norning during testing to prevent learned parameters from changing i.e. don't change the scale and shift params. It acts as a implicit regularization during training.
+Introduces a covariance shift by normalizing the activation (zero-mean, unit-variance) based on current mini batch. It forces inputs to be nicely scaled at each layer which improves gradient flow and makes network more robust to initialization. It does this by making the inputs zero centered, which makes optimization easier. Freeze batch norm during testing to prevent learned parameters from changing i.e. don't change the scale and shift params. It acts as a implicit regularization during training. 
 
 ## Q: What's the difference between SGD (stochastic gradient descent) and batch gradient descent?
 SGD updates the weights/parameters for each training example, whereass batch gradient descent updates the weights after a batch of examples. 
